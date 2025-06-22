@@ -1,7 +1,7 @@
 # E90_calibration
 E90/C23 camera family - gimbal calibration
 This tool provides UART (serial) connection to the C23/E90 and possibly other modern Yuneec cameras. Tested also with CGO-ET from H520.
-Additional functions are Motor test and Vibration test of the camera. Do not touch anything during vibration test.
+Additional functions are Motor test and Machine test of the camera. Do not touch anything during Machine test.
 ![Screenshot](doc/screenshot.png)
 This tool provides a possibility to fully calibrate the gimbal of the C23/E90. This functionality is experimental. Use it on your own risk.
 
