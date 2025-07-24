@@ -1,10 +1,10 @@
 object Form1: TForm1
-  Left = 624
-  Height = 530
-  Top = 550
+  Left = 585
+  Height = 660
+  Top = 482
   Width = 980
   Caption = 'Form1'
-  ClientHeight = 530
+  ClientHeight = 660
   ClientWidth = 980
   Constraints.MinHeight = 530
   Constraints.MinWidth = 980
@@ -16,11 +16,11 @@ object Form1: TForm1
   OnCreate = FormCreate
   object upperPanel: TPanel
     Left = 0
-    Height = 507
+    Height = 637
     Top = 0
     Width = 144
     Align = alLeft
-    ClientHeight = 507
+    ClientHeight = 637
     ClientWidth = 144
     TabOrder = 0
     object cbPort: TComboBox
@@ -42,11 +42,12 @@ object Form1: TForm1
       Text = '/dev/ttyUSB0'
       TextHint = 'Serial port'
       OnDblClick = cbPortDblClick
+      OnGetItems = cbPortGetItems
     end
     object cbSpeed: TComboBox
       Left = 8
       Height = 25
-      Top = 50
+      Top = 88
       Width = 128
       ItemHeight = 17
       Items.Strings = (
@@ -61,8 +62,8 @@ object Form1: TForm1
     object btnConnect: TBitBtn
       Left = 9
       Height = 30
-      Top = 88
-      Width = 121
+      Top = 136
+      Width = 128
       Action = acConnect
       Images = ImageList1
       ImageIndex = 3
@@ -71,8 +72,8 @@ object Form1: TForm1
     object btnClose: TBitBtn
       Left = 9
       Height = 30
-      Top = 331
-      Width = 121
+      Top = 461
+      Width = 128
       Action = acClose
       Anchors = [akLeft, akBottom]
       Images = ImageList1
@@ -82,8 +83,8 @@ object Form1: TForm1
     object btnDisconnect: TBitBtn
       Left = 9
       Height = 30
-      Top = 136
-      Width = 121
+      Top = 182
+      Width = 128
       Action = acDisconnect
       Images = ImageList1
       ImageIndex = 4
@@ -100,7 +101,7 @@ object Form1: TForm1
     object Image1: TImage
       Left = 9
       Height = 128
-      Top = 379
+      Top = 509
       Width = 128
       Anchors = [akLeft, akBottom]
       Center = True
@@ -629,11 +630,21 @@ object Form1: TForm1
       }
       OnClick = Image1Click
     end
+    object btnReNewPortList: TBitBtn
+      Left = 9
+      Height = 30
+      Top = 48
+      Width = 128
+      Action = acScanPorts
+      Images = ImageList1
+      ImageIndex = 2
+      TabOrder = 6
+    end
   end
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
-    Top = 507
+    Top = 637
     Width = 980
     Panels = <    
       item
@@ -649,7 +660,7 @@ object Form1: TForm1
   end
   object pcMain: TPageControl
     Left = 144
-    Height = 507
+    Height = 637
     Top = 0
     Width = 836
     ActivePage = tsYGC
@@ -660,7 +671,7 @@ object Form1: TForm1
     TabOrder = 2
     object tsYGC: TTabSheet
       Caption = 'YGC'
-      ClientHeight = 477
+      ClientHeight = 607
       ClientWidth = 828
       ImageIndex = 1
       PopupMenu = mnText
@@ -742,22 +753,25 @@ object Form1: TForm1
           TabOrder = 6
           OnClick = btnZeroPhaseCaliClick
         end
-        object lblPowerCycle: TLabel
-          Left = 8
-          Height = 17
-          Top = 271
-          Width = 96
-          Caption = 'Power cycle cam'
-        end
         object btnAccCali: TButton
           Left = 8
           Height = 25
-          Top = 304
+          Top = 264
           Width = 107
           Caption = 'AccCali'
           ParentBidiMode = False
           TabOrder = 7
           OnClick = btnAccCaliClick
+        end
+        object btnFrontCali: TButton
+          Left = 8
+          Height = 25
+          Top = 296
+          Width = 107
+          Caption = 'FrontCali'
+          ParentBidiMode = False
+          TabOrder = 8
+          OnClick = btnFrontCaliClick
         end
       end
       object panelYGCTop: TPanel
@@ -808,7 +822,7 @@ object Form1: TForm1
       end
       object gridPower: TStringGrid
         Left = 8
-        Height = 362
+        Height = 492
         Top = 112
         Width = 272
         Anchors = [akTop, akLeft, akBottom]
@@ -884,7 +898,7 @@ object Form1: TForm1
       end
       object GIMBALtext: TMemo
         Left = 288
-        Height = 362
+        Height = 492
         Top = 112
         Width = 268
         Anchors = [akTop, akLeft, akRight, akBottom]

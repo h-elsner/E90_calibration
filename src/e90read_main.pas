@@ -74,6 +74,7 @@ type
     acDeleteText: TAction;
     acSaveText: TAction;
     ActionList1: TActionList;
+    btnReNewPortList: TBitBtn;
     btnVersion: TButton;
     btnTempErs: TButton;
     btnZeroPhaseCali: TButton;
@@ -102,7 +103,6 @@ type
     Label1: TLabel;
     lblTempCali: TLabel;
     lblWarning: TLabel;
-    lblPowerCycle: TLabel;
     lblGimbalBootTime: TLabel;
     lblBootTime: TLabel;
     mnClear: TMenuItem;
@@ -130,6 +130,7 @@ type
     procedure acScanPortsExecute(Sender: TObject);
     procedure btnAccCaliClick(Sender: TObject);
     procedure btnAccEraseClick(Sender: TObject);
+    procedure btnFrontCaliClick(Sender: TObject);
     procedure btnFrontErsClick(Sender: TObject);
     procedure btnPreFrontCaliClick(Sender: TObject);
     procedure btnRebootClick(Sender: TObject);
@@ -143,6 +144,7 @@ type
     procedure btnZeroPhaseErsClick(Sender: TObject);
     procedure btnMotorTestClick(Sender: TObject);
     procedure cbPortDblClick(Sender: TObject);
+    procedure cbPortGetItems(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -186,7 +188,7 @@ var
   SequNumberTransmit: byte;
 
 const
-  AppVersion='V1.1 2025-06-18';
+  AppVersion='V1.2 2025-07-20';
   linkLazarus='https://www.lazarus-ide.org/';
   tab2='  ';
   maxPorts=10;
@@ -248,7 +250,6 @@ begin
   panelRight.Hint:=hntPanelRight;
   panelTempCali.Hint:=hntTempCali;
   lblBootTime.Hint:=hntBoottime;
-  lblPowerCycle.Hint:=hntPowerCycle;
   lblWarning.Caption:=capWarning;
   tsYGC.Caption:=captsYGC;
 end;
@@ -665,6 +666,11 @@ begin
   SendE90Command($13);
 end;
 
+procedure TForm1.btnFrontCaliClick(Sender: TObject);
+begin
+  SendE90Command($14);
+end;
+
 procedure TForm1.btnFrontErsClick(Sender: TObject);
 begin
   SendE90Command($15);
@@ -702,6 +708,8 @@ end;
 
 procedure TForm1.btnAccCaliClick(Sender: TObject);
 begin
+  SendE90Command($06);      {Read PID to start motors again}
+  sleep(1000);
   SendE90Command($12);
 end;
 
@@ -716,6 +724,11 @@ begin
 end;
 
 procedure TForm1.cbPortDblClick(Sender: TObject);
+begin
+  acScanPortsExecute(self);
+end;
+
+procedure TForm1.cbPortGetItems(Sender: TObject);
 begin
   acScanPortsExecute(self);
 end;
